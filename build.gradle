@@ -1,6 +1,6 @@
 plugins {
     id("com.github.johnrengelman.shadow") version "7.0.0"
-    id("io.micronaut.application") version "1.5.0"
+    id("io.micronaut.application") version "1.5.3"
 }
 
 version = "0.1"
@@ -8,10 +8,11 @@ group = "httptest"
 
 repositories {
     mavenCentral()
+    maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
 }
 
 micronaut {
-    runtime("netty")
+    runtime("jetty")
     testRuntime("junit5")
     processing {
         incremental(true)
@@ -24,9 +25,8 @@ dependencies {
     implementation("io.micronaut:micronaut-runtime")
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
-
+    //implementation("io.reactivex.rxjava2:rxjava")
 }
-
 
 application {
     mainClass.set("httptest.Application")
